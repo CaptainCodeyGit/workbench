@@ -395,7 +395,7 @@ function (_Page) {
         return app.modal.show(new _WorkbenchModal__WEBPACK_IMPORTED_MODULE_2__["default"]({}));
       }
     }), flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default.a.component({
-      className: 'Button Workbench-button Workbench-button--add',
+      className: 'Button Workbench-button Workbench-button--config',
       icon: 'fas fa-cog',
       children: 'Configuration',
       onclick: function onclick() {
@@ -436,7 +436,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-flarum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('gargoyle-workbench', function () {
+flarum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('captaincodey-workbench', function () {
   flarum_app__WEBPACK_IMPORTED_MODULE_0___default.a.routes.workbench = {
     path: '/workbench',
     component: _components_WorkbenchPage__WEBPACK_IMPORTED_MODULE_4__["default"].component()

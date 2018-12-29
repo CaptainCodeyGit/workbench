@@ -6,3 +6,17 @@
 .Workbench-name {
     padding-left: 10px;
 }
+
+.Workbench-button--add {
+    margin-right: 10px;
+}
+
+/* Dark mode */
+.define-colors(@config-dark-mode);
+.define-colors(true) {
+    @secondary-color:                @config-secondary-color;
+
+    .Workbench-toolbar {
+        background: hsl(@secondary-hue, min(20%, @secondary-sat), 13%);
+    }
+}

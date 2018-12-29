@@ -14,9 +14,9 @@ export default class WorkbenchPage extends Page {
             children: 'New extension',
             onclick: () => app.modal.show(new WorkbenchModal({}))
           })}
-
+          
           {Button.component({
-            className: 'Button Workbench-button Workbench-button--add',
+            className: 'Button Workbench-button Workbench-button--config',
             icon: 'fas fa-cog',
             children: 'Configuration',
             onclick: () => app.modal.show(new SettingsModal({}))
