@@ -1,0 +1,21 @@
+{
+    "name": "captaincodey/workbench",
+    "description": "Create a fully functional extension in a matter of minutes",
+    "type": "flarum-extension",
+    "require": {
+        "flarum/core": "0.1.0-beta.8.1"
+    },
+    "autoload": {
+        "psr-4": {"CaptainCodey\\Workbench\\": "src/"}
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Workbench",
+            "icon": {
+                "name": "fas fa-hammer",
+                "backgroundColor": "#238c59",
+                "color": "#fff"
+            }
+        }
+    }
+}
