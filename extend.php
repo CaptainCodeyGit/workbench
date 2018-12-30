@@ -19,7 +19,8 @@ return [
         ->js(__DIR__.'/js/dist/admin.js')
         ->css(__DIR__.'/resources/less/admin.less'),
     (new Extend\Routes('api'))
-        ->post('/workbench', 'workbench.create', Controller\CreateExtensionController::class),
+        ->post('/workbench', 'workbench.create', Controller\CreateExtensionController::class)
+        ->get('/workbench/extensions', 'workbench.list', Controller\ListExtensionController::class),
     function (Dispatcher $events) {
     },
 ];

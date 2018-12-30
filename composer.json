@@ -13,7 +13,7 @@
             "title": "Workbench",
             "icon": {
                 "name": "fas fa-hammer",
-                "backgroundColor": "#238c59",
+                "backgroundColor": "#a70613",
                 "color": "#fff"
             }
         }
