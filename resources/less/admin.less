@@ -11,12 +11,86 @@
     margin-right: 10px;
 }
 
+.Workbench-extensions {
+    padding: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.Workbench-extension {
+    margin-right: 10px;
+    background: transparent;
+}
+
+.Extension-name {
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+/* Form */
+.Form-inline {
+    overflow: hidden;
+}
+
+.Form-group--half {
+    width: 49%;
+    float: left;
+}
+
+.Form-group--half:first-child {
+    margin-right: 2%;
+}
+
+/* Modal */
+
+.Modal-nav {
+    padding-left: 15px;
+    margin-bottom: 20px;
+    margin-top: 0;
+    list-style-type: none;
+    line-height: 35px;
+    width: 100%;
+    max-height: 40px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.Modal-tab {
+    float: left;
+    border-top-right-radius: 25px 170px;
+    border-top-left-radius: 20px 90px;
+    padding: 0 30px 0 25px;
+    height: 30px;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0,0,0,.5);
+    max-width: 200px;
+    margin-top: 10px;
+    border: 2px solid #292929;
+    border-bottom: 0;
+    opacity: .4;
+    padding-bottom: 20px;
+    cursor: pointer;
+}
+
+.Modal-tab--active{
+    z-index: 99;
+    opacity: 1;
+    margin-left: 0;
+}
+
 /* Dark mode */
 .define-colors(@config-dark-mode);
 .define-colors(true) {
-    @secondary-color:                @config-secondary-color;
+    @secondary-color: @config-secondary-color;
 
     .Workbench-toolbar {
         background: hsl(@secondary-hue, min(20%, @secondary-sat), 13%);
+    }
+
+    .Workbench-extensions {
+        padding: 10px;
+        display: inline-block;
+        width: 100%;
+        background: hsl(@secondary-hue, min(80%, @secondary-sat), 8%);
     }
 }

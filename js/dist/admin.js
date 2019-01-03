@@ -91,13 +91,17 @@ module.exports =
 /*!******************!*\
   !*** ./admin.js ***!
   \******************/
-/*! no exports provided */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _src_admin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/admin */ "./src/admin/index.js");
+/* harmony import */ var _src_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/common */ "./src/common/index.js");
+/* harmony import */ var _src_common__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_src_common__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _src_common__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _src_common__WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _src_admin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/admin */ "./src/admin/index.js");
 /* empty/unused harmony star reexport */
+
 
 /***/ }),
 
@@ -258,7 +262,7 @@ function (_Modal) {
   };
 
   _proto.className = function className() {
-    return 'WorkbenchModal Modal--small';
+    return 'WorkbenchModal Modal--medium';
   };
 
   _proto.title = function title() {
@@ -268,7 +272,13 @@ function (_Modal) {
   _proto.content = function content() {
     return m("div", {
       className: "Modal-body"
-    }, m("div", {
+    }, m("ul", {
+      class: "Modal-nav"
+    }, m("li", {
+      class: "Modal-tab Modal-tab--active"
+    }, "General"), m("li", {
+      class: "Modal-tab"
+    }, "Details")), m("div", {
       className: "Form"
     }, this.fields().toArray()));
   };
@@ -276,41 +286,63 @@ function (_Modal) {
   _proto.fields = function fields() {
     var items = new flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_3___default.a();
     items.add('name', m("div", {
-      className: "Form-group"
+      class: "Form-inline"
+    }, m("div", {
+      className: "Form-group Form-group--half"
     }, m("label", null, "Name"), m("input", {
       className: "FormControl",
       placeholder: "",
       value: this.name(),
       oninput: m.withAttr('value', this.name)
-    })));
-    items.add('author', m("div", {
-      className: "Form-group"
+    })), m("div", {
+      className: "Form-group Form-group--half"
     }, m("label", null, "Author"), m("input", {
       className: "FormControl",
       placeholder: "",
       value: this.author(),
       oninput: m.withAttr('value', this.author)
-    })));
+    }))));
+    items.add('namespace', m("div", {
+      class: "Form-inline"
+    }, m("div", {
+      className: "Form-group Form-group--half"
+    }, m("label", null, "Extension namespace"), m("p", null, "A namespace can only contain latin letters and numbers and can only start with a letter."), m("input", {
+      className: "FormControl",
+      placeholder: "Marketplace",
+      value: this.name(),
+      oninput: m.withAttr('value', this.name)
+    })), m("div", {
+      className: "Form-group Form-group--half"
+    }, m("label", null, "Author namespace"), m("p", null, "The namespace can not be changed with Workbench after you have created the extension."), m("input", {
+      className: "FormControl",
+      placeholder: "JohnDoe",
+      value: this.author(),
+      oninput: m.withAttr('value', this.author)
+    }))));
     items.add('color', m("div", {
       className: "Form-group"
-    }, m("label", null, "Icon"), m("div", {
-      class: "EditGroupModal-name-input"
-    }, m("input", {
+    }, m("label", null, "Icon"), m("p", null, "Enter the name of any FontAwesome icon class, including the fas fa- prefix."), m("input", {
       className: "FormControl",
-      placeholder: "Icon",
+      placeholder: "fas fa-broom",
       value: this.icon(),
       oninput: m.withAttr('value', this.icon)
-    }), m("br", null), m("input", {
+    }), m("br", null), m("div", {
+      class: "Form-inline"
+    }, m("div", {
+      className: "Form-group Form-group--half"
+    }, m("input", {
       className: "FormControl",
-      placeholder: "Color",
+      placeholder: "#ffffff",
       value: this.color(),
       oninput: m.withAttr('value', this.color)
-    }), m("input", {
+    })), m("div", {
+      className: "Form-group Form-group--half"
+    }, m("input", {
       className: "FormControl",
-      placeholder: "Background",
+      placeholder: "#b72a2a",
       value: this.background_color(),
       oninput: m.withAttr('value', this.background_color)
-    }))));
+    })))));
     items.add('description', m("div", {
       className: "Form-group"
     }, m("label", null, "Description"), m("textarea", {
@@ -383,6 +415,7 @@ function (_Page) {
   var _proto = WorkbenchPage.prototype;
 
   _proto.view = function view() {
+    var extensions = app.store.all('captainc_extensions');
     return m("div", {
       class: "WorkbenchPage"
     }, m("div", {
@@ -401,6 +434,19 @@ function (_Page) {
       onclick: function onclick() {
         return app.modal.show(new _SettingsModal__WEBPACK_IMPORTED_MODULE_3__["default"]({}));
       }
+    })), m("div", {
+      class: "Workbench-extensions"
+    }, extensions.map(function (extension) {
+      return m("button", {
+        class: "Button Workbench-extension"
+      }, m("span", {
+        class: "Badge Badge--group--1 Extension-icon",
+        style: "background-color: rgb(183, 42, 42);"
+      }, m("i", {
+        class: "icon fas fa-wrench Badge-icon"
+      })), m("span", {
+        class: "Extension-name"
+      }, extension.name()));
     })));
   };
 
@@ -430,16 +476,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_components_AdminNav__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_AdminNav__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var flarum_components_AdminLinkButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/components/AdminLinkButton */ "flarum/components/AdminLinkButton");
 /* harmony import */ var flarum_components_AdminLinkButton__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_components_AdminLinkButton__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_WorkbenchPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/WorkbenchPage */ "./src/admin/components/WorkbenchPage.js");
+/* harmony import */ var _common_models_Extension__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/models/Extension */ "./src/common/models/Extension.js");
+/* harmony import */ var _components_WorkbenchPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/WorkbenchPage */ "./src/admin/components/WorkbenchPage.js");
+
 
 
 
 
 
 flarum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('captaincodey-workbench', function () {
+  flarum_app__WEBPACK_IMPORTED_MODULE_0___default.a.store.models.captainc_extensions = _common_models_Extension__WEBPACK_IMPORTED_MODULE_4__["default"];
   flarum_app__WEBPACK_IMPORTED_MODULE_0___default.a.routes.workbench = {
     path: '/workbench',
-    component: _components_WorkbenchPage__WEBPACK_IMPORTED_MODULE_4__["default"].component()
+    component: _components_WorkbenchPage__WEBPACK_IMPORTED_MODULE_5__["default"].component()
   };
   Object(flarum_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_components_AdminNav__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'items', function (items) {
     items.add('workbench', flarum_components_AdminLinkButton__WEBPACK_IMPORTED_MODULE_3___default.a.component({
@@ -450,6 +499,66 @@ flarum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('captaincodey
     }));
   });
 });
+
+/***/ }),
+
+/***/ "./src/common/index.js":
+/*!*****************************!*\
+  !*** ./src/common/index.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./src/common/models/Extension.js":
+/*!****************************************!*\
+  !*** ./src/common/models/Extension.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Extension; });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_Model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/Model */ "flarum/Model");
+/* harmony import */ var flarum_Model__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_Model__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/utils/mixin */ "flarum/utils/mixin");
+/* harmony import */ var flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var Extension =
+/*#__PURE__*/
+function (_mixin) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(Extension, _mixin);
+
+  function Extension() {
+    return _mixin.apply(this, arguments) || this;
+  }
+
+  return Extension;
+}(flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2___default()(flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  name: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('name'),
+  author: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('author')
+}));
+
+
+
+/***/ }),
+
+/***/ "flarum/Model":
+/*!**********************************************!*\
+  !*** external "flarum.core.compat['Model']" ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['Model'];
 
 /***/ }),
 
@@ -538,6 +647,17 @@ module.exports = flarum.core.compat['extend'];
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['utils/ItemList'];
+
+/***/ }),
+
+/***/ "flarum/utils/mixin":
+/*!****************************************************!*\
+  !*** external "flarum.core.compat['utils/mixin']" ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['utils/mixin'];
 
 /***/ })
 

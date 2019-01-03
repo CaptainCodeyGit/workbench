@@ -18,4 +18,8 @@ class Extension extends AbstractModel
 
     protected $table = 'captainc_extensions';
 
+    protected $visible = [
+        'name',
+    ];
+
 }

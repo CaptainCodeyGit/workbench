@@ -12,6 +12,7 @@ namespace CaptainCodey\Workbench;
 
 use Flarum\Extend;
 use Illuminate\Contracts\Events\Dispatcher;
+use CaptainCodey\Workbench\Listener;
 use CaptainCodey\Workbench\Api\Controller;
 
 return [
@@ -22,5 +23,7 @@ return [
         ->post('/workbench', 'workbench.create', Controller\CreateExtensionController::class)
         ->get('/workbench/extensions', 'workbench.list', Controller\ListExtensionController::class),
     function (Dispatcher $events) {
+        $events->subscribe(Listener\AddWorkbenchExtensionsRelationship::class);
+
     },
 ];

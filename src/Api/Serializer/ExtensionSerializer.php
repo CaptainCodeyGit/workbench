@@ -18,7 +18,11 @@ class ExtensionSerializer extends AbstractSerializer
     protected function getDefaultAttributes($discussion)
     {
         return [
-            'title' => $discussion->title,
+            'name' => $discussion->name,
+            'author' => $discussion->author,
+            'icon' => $discussion->icon,
+            'icon_background' => $discussion->icon_background,
+            'icon_color' => $discussion->icon_color,
         ];
     }
 }
